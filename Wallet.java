@@ -86,10 +86,10 @@ class Main {
             final int toId = (i + 1) % 10; // Следующий по кругу, 9->0
             Thread task = new TransferTask(wallets[fromId], wallets[toId], 100);
             threads.add(task); // добавляем в список для ожидания
+            task.start();
         }
 
         for (Thread thread : threads) {
-            thread.start();
             thread.join(); // Приостанавливает main, пока thread не умрет
         }
 
